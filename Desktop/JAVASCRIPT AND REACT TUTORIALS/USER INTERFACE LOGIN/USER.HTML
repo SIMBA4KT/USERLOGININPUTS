@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Authentication</title>
+  <link rel="stylesheet" href="STYLE.CSS">
+</head>
+<body>
+
+<div class="auth-container">
+  <h2>Welcome</h2>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  
+  <div class="button-group">
+    <button onclick="handleAuth('login')">Login</button>
+    <button onclick="handleAuth('signup')" class="secondary">Sign Up</button>
+  </div>
+  
+  <p id="message"></p>
+</div>
+</body>
+<script src="USER.JS"></script>
+</html>
