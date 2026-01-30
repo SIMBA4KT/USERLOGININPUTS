@@ -1,3 +1,18 @@
+// 1. On page load, check if a user is already in storage
+window.onload = function() {
+  const savedData = localStorage.getItem('userAccount');
+  
+  if (savedData) {
+    // Accessing user's data
+    const account = JSON.parse(savedData);
+    
+    // Auto-fill the username and enable the login button
+    document.getElementById('username').value = account.username;
+    document.getElementById('loginBtn').disabled = false;
+    document.getElementById('message').innerText = `Welcome back, ${account.username}! Please log in.`;
+  }
+};
+
 let isRegistered = false;
 
 function handleAuth(type) {
@@ -6,7 +21,7 @@ function handleAuth(type) {
   const pass = document.getElementById('password').value;
   const display = document.getElementById('message');
 
-
+localStorage.setItem('userAccount', JSON.stringify({ username: user , password: pass }));
   // Basic validation
   if (!user || !pass) {
     display.innerText = "Please fill in all fields.";
@@ -21,7 +36,7 @@ function handleAuth(type) {
 
     // call an API to verify credentials
   } 
-  // 2.SIGN UP HANDLER
+  // 2.SIGN UP HANDLERgit 
   if (type === 'signup') {
     alert("New User Sign In"); // pop-up
     isRegistered = true;       // Grant permission to login
@@ -29,6 +44,7 @@ function handleAuth(type) {
     display.style.color = "green";
     return;
   }
+
   // 3.LOGINHANDLER AFTER SIGNUP 
   if (type === 'login') {
     // Check if they skipped sign up
