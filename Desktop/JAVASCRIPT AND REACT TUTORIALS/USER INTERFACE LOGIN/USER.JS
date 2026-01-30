@@ -1,8 +1,11 @@
+let isRegistered = false;
+
 function handleAuth(type) {
   // Grab the values from the input fields
   const user = document.getElementById('username').value;
   const pass = document.getElementById('password').value;
   const display = document.getElementById('message');
+
 
   // Basic validation
   if (!user || !pass) {
@@ -15,10 +18,27 @@ function handleAuth(type) {
   if (type === 'login') {
     display.innerText = `Attempting to login as: ${user}`;
     display.style.color = "blue";
-    // Here you would typically call an API to verify credentials
-  } else {
-    display.innerText = `Creating account for: ${user}`;
+
+    // call an API to verify credentials
+  } 
+  // 2.SIGN UP HANDLER
+  if (type === 'signup') {
+    alert("New User Sign In"); // pop-up
+    isRegistered = true;       // Grant permission to login
+    display.innerText = "Account created! You can now log in.";
     display.style.color = "green";
-    // Here you would typically call an API to save the user
+    return;
   }
-}
+  // 3.LOGINHANDLER AFTER SIGNUP 
+  if (type === 'login') {
+    // Check if they skipped sign up
+    if (!isRegistered) {
+      display.innerText = "Access Denied: Please sign up first!";
+      display.style.color = "orange";
+    } else {
+      // successful login after registration
+      display.innerText = `Welcome back, ${user}!`;
+      display.style.color = "blue";
+    }
+  }
+} ; 

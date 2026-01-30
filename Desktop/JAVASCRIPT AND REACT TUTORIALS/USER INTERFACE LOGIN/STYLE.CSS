@@ -1,36 +1,77 @@
+body {
+  background-color: #1a1a2e; /* Darker background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
 .auth-container {
-  width: 300px;
-  padding: 50px;
-  padding-top: 20px;
-  border: 1px solid #ddd;
-  border-radius: 28px;
-  font-family: sans-serif;
+  width: 340px;
+  height: 360px;
+  padding: 20px;
+  background: #2d3436; /* Deep charcoal */
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Soft deep shadow */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 input {
-  width: 90%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  background: #3d4446;
+  color: white;
+  box-sizing: border-box; /* Prevents input from sticking out */
+  transition: 0.3s;
 }
 
+input:focus {
+  outline: 2px solid #007bff;
+  background: #464d4f;
+}
+.button-group {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 button {
-  padding: 10px 20px;
+  padding: 10px 50px;
   cursor: pointer;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+}
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
 }
 
+button:active {
+  transform: translateY(0);
+}
 .secondary {
-  background-color: #6c757d;
-  margin-left: 10px;
+  background-color: #e4c515;
+  margin-left: 0px;
+  border-radius: 8px;
+  margin-top: 0px;
+  width : 340px;
 }
 
 #message {
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+.newUserclass {
   margin-top: 15px;
   font-size: 0.9em;
+  color: #858383;
 }
