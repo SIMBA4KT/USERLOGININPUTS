@@ -1,33 +1,23 @@
 //check if a user is already in storage
 window.onload = function() {
-  document.getElementById('message').innerText = "Please login or sign up.";
+  const message = document.getElementById('message');
+  const savedAccount = JSON.parse(localStorage.getItem('userAccount'));
 
-const account = JSON.parse(savedData)
-  if (account) {
-    // Accessing user's data
-    const account = JSON.parse(savedData);
-    const savedData = localStorage.getItem('userAccount');
-    //Saved client 
-    document.getElementById('username').value = account.username;
-    document.getElementById('message').innerText = `Welcome back, ${account.username}! Please log in.`;
-  } else if (!account) {
-    userAccount = null;
-    this.document.getElementById('username').value = '';
-    this.document.getElementById('password').value = '';
-    document.getElementById('message').innerText = "Please sign up.";
+   if (savedAccount) {
+    document.getElementById('username').value = savedAccount.username;
+    message.innerText = `Welcome back, ${savedAccount.username}! Please log in.`;
+  } else {
+    message.innerText = "Please login or sign up.";
+    return;
   }
-};
+}
+let clients= JSON.parse(localStorage.getItem('userList')) || [];
 
-const savedAccount = JSON.parse(localStorage.getItem('userAccount'));
-let clients= [JSON.parse(localStorage.getItem('userAccount')) || []];
- 
-
-function handleAuth(type) {
-  const user = document.getElementById('username').value;
-  const pass = document.getElementById('password').value;
+// 1. AUTHENTICATION HANDLER
+  function handleAuth(type) {
+  const user = document.getElementById('username').value.trim();
+  const pass = document.getElementById('password').value.trim();
   const display = document.getElementById('message');
-
-localStorage.setItem('userAccount', JSON.stringify({ username: user }));
 
   // validation
   if (!user || !pass) {
@@ -36,12 +26,6 @@ localStorage.setItem('userAccount', JSON.stringify({ username: user }));
     return;
   }
 
-  // IF USER CLICKS LOGIN
-  if (type === 'login') {
-    display.innerText = `Attempting to login as: ${user}`;
-    display.style.color = "blue";
-
-  } 
   // 2.SIGN UP HANDLER
   if (type === 'signup') {
     const userExists = clients.some(u => u.username === user);
@@ -70,5 +54,4 @@ localStorage.setItem('userAccount', JSON.stringify({ username: user }));
       display.style.color = "red";
     }
   }
-}
-// Still processing for password...
+};
