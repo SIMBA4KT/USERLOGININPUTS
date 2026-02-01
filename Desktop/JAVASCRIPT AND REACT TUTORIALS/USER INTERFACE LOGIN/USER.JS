@@ -1,15 +1,16 @@
 //check if a user is already in storage
 window.onload = function() {
+  document.getElementById('message').innerText = "Please login or sign up.";
 
-  if (savedData) {
+const account = JSON.parse(savedData)
+  if (account) {
     // Accessing user's data
     const account = JSON.parse(savedData);
     const savedData = localStorage.getItem('userAccount');
-
-    // Auto-fill the username and enable the login button
+    //Saved client 
     document.getElementById('username').value = account.username;
     document.getElementById('message').innerText = `Welcome back, ${account.username}! Please log in.`;
-  } else if (!savedData) {
+  } else if (!account) {
     userAccount = null;
     this.document.getElementById('username').value = '';
     this.document.getElementById('password').value = '';
@@ -49,16 +50,16 @@ localStorage.setItem('userAccount', JSON.stringify({ username: user }));
       display.innerText = "Username already exists. Try a different one!";
       display.style.color = "orange";
     } else {
-      // Add to array
+      // Add client to array
       clients.push({ username: user, password: pass });
       localStorage.setItem('userList', JSON.stringify(clients));
       localStorage.setItem('userAccount', JSON.stringify({ username: user }));
       display.innerText = "Account created successfully!";
       display.style.color = "green";
-      alert("New User Registered");
+      alert("New Client Registered");
     }
    } else if (type === 'login') {
-    // 4. Look for a matching user in the array
+    // 4. matching username in the array
     const foundClient = clients.find(u => u.username === user && u.password === pass);
 
     if (foundClient) {
@@ -70,3 +71,4 @@ localStorage.setItem('userAccount', JSON.stringify({ username: user }));
     }
   }
 }
+// Still processing for password...
